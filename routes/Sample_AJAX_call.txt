@@ -1,1 +1,0 @@
-http://rongxiat-hw7.us-west-1.elasticbeanstalk.com/location_cur?Keyword=pizza&Category=Default&Distance=10&location_lat=34.0266&location_lng=-118.2831

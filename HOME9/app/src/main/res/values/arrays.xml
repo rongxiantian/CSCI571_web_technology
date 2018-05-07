@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tab_short_Title">
+        <item>SEARCH</item>
+        <item>FAVORITES</item>
+    </string-array>
+
+    <string-array name="tab_long_Title">
+        <item>INFO</item>
+        <item>PHOTOS</item>
+        <item>MAP</item>
+        <item>REVIEWS</item>
+    </string-array>
+
+    <string-array name="DropdownText">
+        <item>Default</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string-array name="Drop_down_Text">
+        <item>Default</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>

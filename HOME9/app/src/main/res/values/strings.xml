@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Places Search</string>
+    <string name="keywordText">Keyword</string>
+    <string name="distance_in_miles">Distance(in miles)</string>
+    <string name="SearchText">SEARCH</string>
+    <string name="radio_cur_loc">Current Location</string>
+    <string name="radio_oth_loc">Other. Specify Location</string>
+    <string name="enter_keyword">Enter Keyword</string>
+    <string name="clear">Clear</string>
+    <string name="type_in_the_location">Type in the Location</string>
+    <string name="category">Category</string>
+    <string name="enter_distance_default_10_miles">Enter distance(default 10 miles)</string>
+    <string name="Vali">Please enter mandatory field</string>
+    <string name="Search_results">Search results</string>
+</resources>
