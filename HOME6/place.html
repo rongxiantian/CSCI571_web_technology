@@ -1,0 +1,48 @@
+	<form onsubmit="return false" method="get" > 
+		<h3 style="margin-top: 5px; text-align: center; font: italic bold 25px/30px Georgia, serif;">Travel and Entertainment Search</h3>	
+		<label>Keyword </label><input type="text" id="Keyword" required><br>
+		<label>Category </label><select type="text" id="Category">
+			<option value="default" selected>default</option>
+			<option value="cafe">cafe</option>
+			<option value="bakery">bakery</option>
+			<option value="restaurant">restaurant</option>
+			<option value="beauty salon">beauty salon</option>
+			<option value="casino">casino</option>
+			<option value="movie theater">movie theater</option>
+			<option value="lodging">lodging</option>
+			<option value="airport">airport</option>
+			<option value="train station"> train station</option>
+			<option value="subway station">subway station</option>
+			<option value="bus station">bus station</option>
+		</select><br> 
+		<label>Distance(miles) </label><input type="text" id="Distance" placeholder="10">	
+		<label>from </label>
+		<input type="radio" name="location" id="location_Here" value="Here" checked>Here<br>
+		<input style="margin-left: 48%;" type="radio" name="location" id="location_other"> <input type="text" id="location_other_text" placeholder="location" disabled>
+		
+		<div style="margin-left: 30px;margin-top: 30px; margin-bottom: 30px;">
+		<input type="submit" id="Search" value="Search" onclick="get_tabular()" disabled>   <input type="reset" id="Clear" value="Clear">
+		</div>
+</form>
+
+
+
+
+
+
+	<style type="text/css">
+			form{
+			 display: block;
+			 margin: auto;
+			 width: 650px;
+			 background-color: #fafafa;
+		     border: 5px solid #cccccc;
+		     margin-bottom: 15px;
+
+		}
+		form label{
+			margin-left: 5px;
+			font-weight: bold;
+		}
+		
+	</style>

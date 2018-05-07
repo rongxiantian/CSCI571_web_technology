@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Plunker</title>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script data-require="angular.js@1.0.x" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js" data-semver="1.0.7"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCaVHSWA2FTNKYLOecEY05UcAz9yo1krzA&sensor=false&libraries=places"></script>
+    <script src="http://jvandemo.github.io/angularjs-google-maps/dist/angularjs-google-maps.js"></script>
+    <script src="app.js"></script>
+  </head>
+
+  <body ng-controller="MainCtrl">
+    
+    <h2>Google Maps Places Autocomplete demo</h2>
+    <p>This demo shows how you can extract the lat and lng coördinates from an autocomplete input using the <a href="https://github.com/jvandemo/angularjs-google-maps/" target="_blank">AngularJS Google Maps library</a>.</p>
+    
+    <h3>Enter a location:</h3>
+    <input type="text" gm-places-autocomplete ng-model="autocomplete" style="width: 300px;"/>
+    
+    <h3>Results:</h3>
+    <ul>
+      <li>Lat: {{ lat }}</li>
+      <li>Lng: {{ lng }}</li>
+    </ul>
+    
+  </body>
+
+</html>

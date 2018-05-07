@@ -1,0 +1,45 @@
+Pages
+Frontend 
+
+form
+title : Travel and Entertainment Search
+input: Keyword        empty error remind
+select: Category  
+cafe, bakery, restaurant, beauty salon, casino, movie theater, lodging, airport, train station, subway station, bus station
+
+input Distance(miles)     
+Radio: from Here/location(text input)   empty error remind
+button Search    disabled when fetch geolocation
+	Clear
+
+
+place.php
+	Geocoding API
+	params: Key and Address
+
+	Google Places API
+	params: Key Location Radius Type Keyword
+
+	return JSON/extract useful fields to client 
+
+
+
+js to display table down the File1.html
+
+
+Category 	Name	 Address
+(empty) No records have been found
+
+click Name : retrieve reviews and photos
+
+	Google Places API details
+
+	Google Places API place photos
+
+Google Maps JavaScript Library
+
+ipapi.com HTTP API
+
+
+
+

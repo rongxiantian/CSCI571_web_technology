@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<script type="text/javascript">
+	function viewJSON(what){
+	var URL = what.URL.value;  
+	 	function loadJSON(url) {
+	 	 	try{
+
+	     	if (window.XMLHttpRequest)
+	      	{// code for IE7+, Firefox, Chrome, Opera, Safari
+	       		xmlhttp=new XMLHttpRequest();
+	  		} 
+	  		else {// code for IE6, IE5
+	    	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");  
+	    	}
+
+	 	 	xmlhttp.open("GET",url,false); // "synchronous"
+	 	 	xmlhttp.overrideMimeType("text/plain");
+	 		xmlhttp.send();
+	 		if(xmlhttp.status==404){
+	 			alert("File not exist!");
+	 			return ;
+	 		}
+	 		console.log(xmlhttp);
+	 	 	jsonObj= JSON.parse(xmlhttp.responseText);}
+	 	 	catch(e){
+	 	 		alert(e);
+	 	 		return;
+	 	 	}
+	  		
+	  		return jsonObj;   
+	  	}
+  		jsonObj = loadJSON(URL);
+  		if(jsonObj == undefined){return;}
+ 		if (window.ActiveXObject) //if IE, simply execute script (due to async prop).
+ 		{  
+ 			if (jsonObj.parseError.errorCode != 0) {
+		    var myErr = jsonObj.parseError;
+		    generateError(jsonObj);
+		    hWin = window.open("", "Error", "height=700");
+		    hWin.document.write(html_text);
+		  	} 
+		  	else {  
+		  			generateHTML(jsonObj);
+		            hWin = window.open("", "Assignment4", "height=800");
+		            hWin.document.write(html_text);   
+		    } 
+		} 
+		else //else if FF, execute script once JSON object has loaded
+		{  
+			if(xmlhttp.responseText) {
+    		try {
+     		   	a = JSON.parse(xmlhttp.responseText);
+   			 	} catch(e) {
+     		   	alert("something wrong with the file!");
+     		   	alert(e); // error in the above string (in this case, yes)!
+    			}
+			}
+				jsonObj.onload=generateHTML(jsonObj);
+			    hWin = window.open("", "Assignment4", "height=800");
+			   	hWin.document.write(html_text); 
+			 
+    	} hWin.document.close();  
+    }
+
+    function generateError(jsonObj) {
+    	alert("didn't find that file!");
+    }
+
+	function generateHTML(jsonObj)   {
+        root=jsonObj.DocumentElement; 
+        html_text="<html><head><title>JSON Parse Result</title></head><body>";
+        html_text+="<table border='2'>"; 
+        //caption=jsonObj.catalog.title; 
+        //html_text+="<caption align='left'><h1>"+caption+"</h1></caption>";
+        tables=jsonObj.Mainline.Table; // an array of planes
+        Companys=tables.Row;
+
+        html_text+="<tbody>"; 
+        x=450;  y=300;
+	 
+    	// output the headers
+    	html_text += '<tr style="text-align: center">';
+		for (var i = 0; i <= tables.Header.Data.length-1;i++) {			
+					html_text+=
+					'<td><b>' + tables.Header.Data[i]+'</b></td>' ;
+		}
+		html_text+='</tr>'
+		
+       if(Companys==undefined){
+        	alert("there is no entries in the table");
+        	html_text+="</tbody>"; 
+	 		html_text+="</table>";           
+			html_text+="</body></html>"; 
+			return;
+        }
+
+		// output out the values
+        for(i=0;i<Companys.length;i++) //do for all planes (one per row)
+        {                 
+			Header=Companys[i]; //get properties of a plane (an object)
+	    	html_text+="<tr>";      //start a new row of the output table
+            var Company_keys = Object.keys(Header);
+           	for(j=0;j<Company_keys.length;j++) 
+	        {
+                prop = Company_keys[j];
+                if(prop=="Hubs"){
+                	html_text+='<td><ul>';
+            		Hub = Header[prop]["Hub"];
+            		var count = true;
+            		for(ikey in Hub){
+            				if(count==true){ 
+            					html_text+='<li><b>'+ Hub[ikey]
+								+'</b></li>';
+								count=false;
+							}
+            				else{
+            					html_text+='<li>'+ Hub[ikey]
+								+'</li>';
+							}
+						}	
+					html_text+='</ul></td>'	
+                }
+                else if(prop=="HomePage"){
+                	linkprop = Header[prop].replace(/^"(.*)"$/, '$1');;
+                	html_text+="<td><a href="+ Header[prop]+ ">" + linkprop + "</td>";
+                	console.log(Header[prop].replace(/['"]+/g, ''));
+                }
+		        else if(prop=="Logo")		
+		        {//handle images separately				         			
+		        	html_text+="<td><img src='"+ Header[prop] +"' width='"+x+"' height='"+y+"'></td>"; 	      
+		        } 
+		    	else {						  
+			    	html_text+="<td>"+ Header[prop] +"</td>";		               
+		     	} 	   		        
+			} 		           
+		html_text+="</tr>";            
+		}                           
+		html_text+="</tbody>"; 
+	 	html_text+="</table>";           
+		html_text+="</body></html>";  
+		console.log(html_text);
+		}
+
+</script>
+<body>
+<h1 style="text-align: center">View the Commercial Aircrafts </h1>
+<p style="text-align: center">Enter XML file</p>
+<form style="text-align: center" name="myform" method="POST" id="location">
+<input type="text" name="URL" maxlength="255" size="100" value="" />
+<br />
+<input type="button" name="submit" value="Submit Query" onClick="viewJSON(this.form)" />
+</form>
+</body>
