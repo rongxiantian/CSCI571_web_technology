@@ -10,3 +10,5 @@ The links below are __Reference Solution Videos__
 * HW9: Place Search Android App https://youtu.be/jhmInPC0m4M
 
 My homework website http://www-scf.usc.edu/~rongxiat/r1o2n3g4x5i6a7t8.html (Only 3,4,6,8 are valid links, other homeworks are configurations, HW9 is an app which can't be shown on website)
+
+Update: Google changed API so the search function is not available.
