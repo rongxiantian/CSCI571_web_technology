@@ -36,34 +36,34 @@
             <div class="col-sm-4">
                 <select class="form-control" id="Category" ng-model="user.Category">
                     <option value="Default">Default</option>
-                    <option value="Airport">Airport</option>
-                    <option value="Amusement Park">Amusement Park</option>
-                    <option value="Aquarium">Aquarium</option>
-                    <option value="Art_Gallery">Art Galery</option>
-                    <option value="Bakery">Bakery</option>
-                    <option value="Bar">Bar</option>
-                    <option value="Beauty_Salon">Beauty Salon</option>
-                    <option value="Bowling_Alley">Bowling Alley</option>
-                    <option value="Bus_Station">Bus Station</option>
-                    <option value="Cafe">Cafe</option>
-                    <option value="Campground">Campground</option>
-                    <option value="Car_Rental">Car Rental</option>
-                    <option value="Casino">Casino</option>
-                    <option value="Lodging">Lodging</option>
-                    <option value="Movie_Theater">Movie Theater</option>
-                    <option value="Museum">Museum</option>
-                    <option value="Night_Club">Night Club</option>
-                    <option value="Park">Park</option>
-                    <option value="Parking">Parking</option>
-                    <option value="Restaurant">Restaurant</option>
-                    <option value="Shopping_Mall">Shpping Mall</option>
-                    <option value="Stadium">Stadium</option>
-                    <option value="Subway_Station">Subway Station</option>
-                    <option value="Taxi_Stand">Taxi Stand</option>
-                    <option value="Train_Station">Train Station</option>
-                    <option value="Transit_Station">Transit Station</option>
-                    <option value="Travel_Agency">Travel Agency</option>
-                    <option value="Zoo">Zoo</option>
+                    <option value="airport">Airport</option>
+                    <option value="amusement Park">Amusement Park</option>
+                    <option value="aquarium">Aquarium</option>
+                    <option value="art_Gallery">Art Galery</option>
+                    <option value="bakery">Bakery</option>
+                    <option value="bar">Bar</option>
+                    <option value="beauty_Salon">Beauty Salon</option>
+                    <option value="bowling_Alley">Bowling Alley</option>
+                    <option value="bus_Station">Bus Station</option>
+                    <option value="cafe">Cafe</option>
+                    <option value="campground">Campground</option>
+                    <option value="car_Rental">Car Rental</option>
+                    <option value="casino">Casino</option>
+                    <option value="lodging">Lodging</option>
+                    <option value="movie_Theater">Movie Theater</option>
+                    <option value="museum">Museum</option>
+                    <option value="night_Club">Night Club</option>
+                    <option value="park">Park</option>
+                    <option value="parking">Parking</option>
+                    <option value="restaurant">Restaurant</option>
+                    <option value="shopping_Mall">Shpping Mall</option>
+                    <option value="stadium">Stadium</option>
+                    <option value="subway_Station">Subway Station</option>
+                    <option value="taxi_Stand">Taxi Stand</option>
+                    <option value="train_Station">Train Station</option>
+                    <option value="transit_Station">Transit Station</option>
+                    <option value="travel_Agency">Travel Agency</option>
+                    <option value="zoo">Zoo</option>
                 </select>
             </div>
         </div>
@@ -95,7 +95,7 @@
         </div>
         <div class="form-group row">
             <div class="control-label offset-sm-2 mb-4">
-                <button type="submit" class="btn btn-primary"  ng-disabled="user.Keyword=='' || (location=='location_oth' && !location_oth_t.length )|| cur_content==undefined || (search_form.keyword.$dirty && search_form.keyword.$invalid) " >
+                <button type="submit" class="btn btn-primary"  ng-disabled="user.Keyword=='' || (location=='location_oth' && location_oth_t.length )|| (location=='location_cur' && cur_content==undefined) || (search_form.keyword.$dirty && search_form.keyword.$invalid) " >
                     <i class="fa fa-search"></i> Search</button>
                 <button type="reset" class="btn btn-default" ng-click="reset()">Clear</button>
             </div>
@@ -169,7 +169,7 @@
                 <td><img ng-src="{{x.icon}}" style='width:40px;height:40px;'></td>
                 <td>{{x.name}}</td>
                 <td>{{x.vicinity}}</td>
-                <td><button class="btn btn-light" ng-click="set_favour(x)"> <i id="{{x.place_id}}" class="fa fa-star-o"></i></button></td>
+                <td><button class="btn btn-light" ng-click="set_favour(x)"> <i id="{{x.place_id}}" ng-class="init_favour(x.place_id)" ></i></button></td>
                 <td><button class="btn btn-light" ng-click='get_detail(x.place_id,x.geometry.location,x)'> <i class="fa fa-chevron-right"></i></button></td>
             </tr>
         </table>
@@ -189,7 +189,7 @@
                 <td><img ng-src="{{x.icon}}" style='width:40px;height:40px;'></td>
                 <td>{{x.name}}</td>
                 <td>{{x.vicinity}}</td>
-                <td><button class="btn btn-light" ng-click="set_favour(x)"> <i id="{{x.place_id}}" class="fa fa-star-o"></i></button></td>
+                <td><button class="btn btn-light" ng-click="set_favour(x)"> <i id="{{x.place_id}}" ng-class="init_favour(x.place_id)"></i></button></td>
                 <td><button class="btn btn-light" ng-click='get_detail(x.place_id,x.geometry.location,x)'> <i class="fa fa-chevron-right"></i></button></td>
             </tr>
         </table>
@@ -209,7 +209,7 @@
                 <td><img ng-src="{{x.icon}}" style='width:40px;height:40px;'></td>
                 <td>{{x.name}}</td>
                 <td>{{x.vicinity}}</td>
-                <td><button class="btn btn-light" ng-click="set_favour(x)"> <i id="{{x.place_id}}" class="fa fa-star-o"></i></button></td>
+                <td><button class="btn btn-light" ng-click="set_favour(x)"> <i id="{{x.place_id}}" ng-class="init_favour(x.place_id)"></i></button></td>
                 <td><button class="btn btn-light" ng-click='get_detail(x.place_id,x.geometry.location,x)'> <i class="fa fa-chevron-right"></i></button></td>
             </tr>
         </table>
