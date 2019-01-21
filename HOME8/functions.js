@@ -53,14 +53,14 @@ app.controller('bodyCtrl', function($scope, $http,$animate) {
         if($scope.location==="location_cur"){
              params += "Keyword=" + $scope.user.Keyword + '&' +
                 "Category=" + $scope.user.Category+ '&' +
-                "Distance=" + $scope.user.Distance+ '&' +
+                "Distance=" + (parseInt($scope.user.Distance)*1609.34).toString()+ '&' +
                 "location_lat=" +$scope.cur_content.latitude + '&' +
                 "location_lng=" +$scope.cur_content.longitude;
         }
         else if($scope.location==="location_oth"){
             params += "Keyword=" + $scope.user.Keyword + '&' +
                 "Category=" + $scope.user.Category+ '&' +
-                "Distance=" + $scope.user.Distance+ '&' +
+                "Distance=" + (parseInt($scope.user.Distance)*1609.34).toString()+ '&' +
                 "location_lat=" +$scope.lat + '&' +
                 "location_lng=" +$scope.lng;
         }
@@ -81,6 +81,7 @@ app.controller('bodyCtrl', function($scope, $http,$animate) {
     $scope.NextFunc = function (npage) {
         var params = "pagetoken=" + $scope.next_page_token;
         if($scope.table[npage].table_statuscode===undefined){
+            //$http.get("http://rongxiat-hw7.us-west-1.elasticbeanstalk.com/next?"+params)
             $http.get("http://rongxiat-hw7.us-west-1.elasticbeanstalk.com/next?"+params)
                 .then(function(response) {
                     //console.log(typeof response.data);
@@ -147,13 +148,25 @@ app.controller('bodyCtrl', function($scope, $http,$animate) {
 
     //favourite table
     $scope.favour = {};
-
+    //localStorage.clear();
     $scope.show_favour = false;
-    for(x in localStorage){//x is place_id
-        $scope.favour[x]= JSON.parse(localStorage.getItem(x));
+    // for(x in localStorage){//x is place_id
+    //     $scope.favour[x]= JSON.parse(localStorage.getItem(x));
+    // }
+    for(var i = 0; i < localStorage.length; i++){
+        $scope.favour[i]= JSON.parse(localStorage.getItem(localStorage.key(i)));
     }
     $scope.hasfavour = !angular.equals($scope.favour,{});
-    //console.log(typeof $scope.favour);
+
+    $scope.init_favour = function(id){
+        if(id in $scope.favour){
+            return "fa fa-star";
+        }
+        else{
+            return "fa fa-star-o";
+        }
+    }
+
     $scope.set_favour = function (x) {
         if(document.getElementById(x.place_id).classList.contains("fa-star-o")){
             document.getElementById(x.place_id).classList.remove("fa-star-o");
@@ -207,12 +220,14 @@ app.controller('bodyCtrl', function($scope, $http,$animate) {
             document.getElementById("d_star").classList.add("fa-star-o");
         }
         if($scope.curhigh!=""){
-            document.getElementById($scope.curhigh).classList.remove('bg-warning');
+            if(document.getElementById($scope.curhigh)!=null){
+                document.getElementById($scope.curhigh).classList.remove('bg-warning');
+            }
         }
         $scope.curhigh = placeid+'_t';
-        document.getElementById($scope.curhigh).classList.add('bg-warning');
-
-
+        if(document.getElementById($scope.curhigh)!=null){
+            document.getElementById($scope.curhigh).classList.add('bg-warning');
+        }
 
         var request = {placeId: placeid};
         map_des_loc = location;
