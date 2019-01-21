@@ -10,7 +10,7 @@ app.get('/location_cur', function (req, res) {
     res.setHeader("Access-Control-Allow-Origin","*");
     var params = url.parse(req.url, true).query;
     var url_text='https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='
-        +params.location_lat+','+params.location_lng+'&radius='+params.Distance*1609.34+'&type='+params.Category+'&keyword='
+        +params.location_lat+','+params.location_lng+'&radius='+params.Distance+'&type='+params.Category+'&keyword='
         +params.Keyword+'&key=AIzaSyCaVHSWA2FTNKYLOecEY05UcAz9yo1krzA';
     https.get(url_text,function(req2,res2){
         var res_text = "";
